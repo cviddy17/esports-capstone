@@ -13,6 +13,10 @@ app = Flask(__name__)
 df = pd.read_csv('testapp.csv')
 
 @app.route("/")
+def index():
+    return render_template('index.html')
+
+@app.route("/charts/")
 def graphme():
     plot = create_histogram(df['Age_at_win'].dropna(),
                             'Age')
