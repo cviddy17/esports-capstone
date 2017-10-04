@@ -91,7 +91,7 @@ def graph1():
     plot = figure()
     # plot.circle([1,2], [3,4])
     # script2, div2 = components(plot)
-    return render_template("second_template.html", the_div=div, the_script=script)
+    return render_template("longpage.html", the_div=div, the_script=script)
 
 
 
@@ -122,7 +122,7 @@ def create_bigbar(df,col1, col2, title):
 
 def create_donut(df,col1, col2, title):
     plot = Donut(df, label=col1, values=col2, color=Spectral11,
-                 title=title, plot_width=400, plot_height=400)
+                 title=title, plot_width=300, plot_height=300)
     return plot
 
 
