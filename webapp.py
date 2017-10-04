@@ -42,7 +42,7 @@ df2 = dfbig[~mask]
 #     return render_template('index.html')
 
 
-@app.route("/")
+@app.route("/dashboard/")
 def graphme():
     plot = create_histogram(df['Age_at_win'].dropna())
     q = bydate(dfbig,'Prize_USD','date')
@@ -69,7 +69,7 @@ def graphme():
                             the_div3=div3, the_script3=script3,
                             the_div4=div4, the_script4=script4)
 
-@app.route("/presentation/1/")
+@app.route("/presentation/")
 def graph1():
     plot = create_histogram(df['Age_at_win'].dropna())
     q = bydate(dfbig,'Prize_USD','date')
@@ -91,79 +91,9 @@ def graph1():
     plot = figure()
     # plot.circle([1,2], [3,4])
     # script2, div2 = components(plot)
-    return render_template("index1.html", the_div=div, the_script=script)
+    return render_template("second_template.html", the_div=div, the_script=script)
 
-@app.route("/presentation/2/")
-def graph2():
-    plot = create_histogram(df['Age_at_win'].dropna())
-    q = bydate(dfbig,'Prize_USD','date')
-    plot2 = create_bigbar(q, 'date','Prize_USD','Earnings By Year')
 
-    p = nlargest(dfbig, 'CountryName','Prize_USD',10)
-    plot3 = create_donut(p, 'CountryName','Prize_USD',
-                            'Earnings by Top 10 Countries')
-
-    r = nlargest(df2, 'teams','Prize_USD',5)
-    plot4 = create_bar_chart(r, 'teams','Prize_USD',
-                            'Earnings by Top 5 Teams')
-
-    script, div = components(plot2)
-    script2, div2 = components(plot)
-    script3, div3 = components(plot3)
-    script4, div4 = components(plot4)
-
-    plot = figure()
-    # plot.circle([1,2], [3,4])
-    # script2, div2 = components(plot)
-    return render_template("index2.html", the_div2=div2, the_script2=script2)
-
-@app.route("/presentation/3/")
-def graph3():
-    plot = create_histogram(df['Age_at_win'].dropna())
-    q = bydate(dfbig,'Prize_USD','date')
-    plot2 = create_bigbar(q, 'date','Prize_USD','Earnings By Year')
-
-    p = nlargest(dfbig, 'CountryName','Prize_USD',10)
-    plot3 = create_donut(p, 'CountryName','Prize_USD',
-                            'Earnings by Top 10 Countries')
-
-    r = nlargest(df2, 'teams','Prize_USD',5)
-    plot4 = create_bar_chart(r, 'teams','Prize_USD',
-                            'Earnings by Top 5 Teams')
-
-    script, div = components(plot2)
-    script2, div2 = components(plot)
-    script3, div3 = components(plot3)
-    script4, div4 = components(plot4)
-
-    plot = figure()
-    # plot.circle([1,2], [3,4])
-    # script2, div2 = components(plot)
-    return render_template("index3.html", the_div3=div3, the_script3=script3)
-
-@app.route("/presentation/4/")
-def graph4():
-    plot = create_histogram(df['Age_at_win'].dropna())
-    q = bydate(dfbig,'Prize_USD','date')
-    plot2 = create_bigbar(q, 'date','Prize_USD','Earnings By Year')
-
-    p = nlargest(dfbig, 'CountryName','Prize_USD',10)
-    plot3 = create_donut(p, 'CountryName','Prize_USD',
-                            'Earnings by Top 10 Countries')
-
-    r = nlargest(df2, 'teams','Prize_USD',5)
-    plot4 = create_bar_chart(r, 'teams','Prize_USD',
-                            'Earnings by Top 5 Teams')
-
-    script, div = components(plot2)
-    script2, div2 = components(plot)
-    script3, div3 = components(plot3)
-    script4, div4 = components(plot4)
-
-    plot = figure()
-    # plot.circle([1,2], [3,4])
-    # script2, div2 = components(plot)
-    return render_template("index4.html", the_div4=div4, the_script4=script4)
 
 def nlargest(df, col1, col2, n):
     x = df.groupby(df[col1])[col2].apply(lambda i: i.sum())
