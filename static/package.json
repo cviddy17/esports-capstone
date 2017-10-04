@@ -1,21 +1,19 @@
 {
-  "title": "SB Admin",
-  "name": "startbootstrap-sb-admin",
+  "title": "Portfolio Item",
+  "name": "startbootstrap-portfolio-item",
   "version": "4.0.0-beta",
-  "description": "A one page app landing page HTML theme for Bootstrap.",
+  "description": "A portfolio item HTML template built with Bootstrap",
   "keywords": [
     "css",
     "sass",
     "html",
     "responsive",
     "theme",
-    "template",
-    "admin",
-    "app"
+    "template"
   ],
-  "homepage": "https://startbootstrap.com/template-overviews/sb-admin",
+  "homepage": "https://startbootstrap.com/template-overviews/portfolio-item",
   "bugs": {
-    "url": "https://github.com/BlackrockDigital/startbootstrap-sb-admin/issues",
+    "url": "https://github.com/BlackrockDigital/startbootstrap-portfolio-item/issues",
     "email": "feedback@startbootstrap.com"
   },
   "license": "MIT",
@@ -25,26 +23,15 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/BlackrockDigital/startbootstrap-sb-admin.git"
+    "url": "https://github.com/BlackrockDigital/startbootstrap-portfolio-item.git"
   },
   "dependencies": {
     "bootstrap": "^4.0.0-beta",
-    "chart.js": "2.6.0",
-    "datatables.net-bs4": "1.10.15",
-    "font-awesome": "4.7.0",
     "jquery": "^3.2.1",
-    "jquery.easing": "^1.4.1",
-    "popper.js": "1.12.3"
+    "popper.js": "^1.11.1"
   },
   "devDependencies": {
     "browser-sync": "2.18.13",
-    "gulp": "^3.9.1",
-    "gulp-clean-css": "3.7.0",
-    "gulp-header": "1.8.9",
-    "gulp-html-beautify": "^1.0.1",
-    "gulp-pug": "^3.3.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^3.1.0",
-    "gulp-uglify": "3.0.0"
+    "gulp": "^3.9.1"
   }
 }
