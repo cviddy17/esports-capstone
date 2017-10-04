@@ -5,11 +5,29 @@ from bokeh.charts import Histogram, Bar,Donut, HeatMap, TimeSeries
 from bokeh.embed import components
 from bokeh.models.sources import ColumnDataSource
 from bokeh.palettes import Spectral11
+from bokeh.themes import Theme
+from bokeh.io import curdoc
 import pandas as pd
 import numpy as np
 from flask import Flask, render_template
 
 app = Flask(__name__)
+
+bokehtheme = Theme(json={
+'attrs' : {
+    'Figure' : {
+        'background_fill_color': '#2F2F2F',
+        'border_fill_color': '#2F2F2F',
+        'outline_line_color': '#444444',
+    },
+    'Grid': {
+        'grid_line_dash': [6, 4],
+        'grid_line_alpha': .3,
+    },
+    'Title': {
+        'text_color': 'white'
+    }
+}})
 
 df = pd.read_csv('testapp.csv')
 df.date = pd.to_datetime(df.date, )
@@ -51,6 +69,102 @@ def graphme():
                             the_div3=div3, the_script3=script3,
                             the_div4=div4, the_script4=script4)
 
+@app.route("/presentation/1/")
+def graph1():
+    plot = create_histogram(df['Age_at_win'].dropna())
+    q = bydate(dfbig,'Prize_USD','date')
+    plot2 = create_bigbar(q, 'date','Prize_USD','Earnings By Year')
+
+    p = nlargest(dfbig, 'CountryName','Prize_USD',10)
+    plot3 = create_donut(p, 'CountryName','Prize_USD',
+                            'Earnings by Top 10 Countries')
+
+    r = nlargest(df2, 'teams','Prize_USD',5)
+    plot4 = create_bar_chart(r, 'teams','Prize_USD',
+                            'Earnings by Top 5 Teams')
+
+    script, div = components(plot2)
+    script2, div2 = components(plot)
+    script3, div3 = components(plot3)
+    script4, div4 = components(plot4)
+
+    plot = figure()
+    # plot.circle([1,2], [3,4])
+    # script2, div2 = components(plot)
+    return render_template("index1.html", the_div=div, the_script=script)
+
+@app.route("/presentation/2/")
+def graph2():
+    plot = create_histogram(df['Age_at_win'].dropna())
+    q = bydate(dfbig,'Prize_USD','date')
+    plot2 = create_bigbar(q, 'date','Prize_USD','Earnings By Year')
+
+    p = nlargest(dfbig, 'CountryName','Prize_USD',10)
+    plot3 = create_donut(p, 'CountryName','Prize_USD',
+                            'Earnings by Top 10 Countries')
+
+    r = nlargest(df2, 'teams','Prize_USD',5)
+    plot4 = create_bar_chart(r, 'teams','Prize_USD',
+                            'Earnings by Top 5 Teams')
+
+    script, div = components(plot2)
+    script2, div2 = components(plot)
+    script3, div3 = components(plot3)
+    script4, div4 = components(plot4)
+
+    plot = figure()
+    # plot.circle([1,2], [3,4])
+    # script2, div2 = components(plot)
+    return render_template("index2.html", the_div2=div2, the_script2=script2)
+
+@app.route("/presentation/3/")
+def graph3():
+    plot = create_histogram(df['Age_at_win'].dropna())
+    q = bydate(dfbig,'Prize_USD','date')
+    plot2 = create_bigbar(q, 'date','Prize_USD','Earnings By Year')
+
+    p = nlargest(dfbig, 'CountryName','Prize_USD',10)
+    plot3 = create_donut(p, 'CountryName','Prize_USD',
+                            'Earnings by Top 10 Countries')
+
+    r = nlargest(df2, 'teams','Prize_USD',5)
+    plot4 = create_bar_chart(r, 'teams','Prize_USD',
+                            'Earnings by Top 5 Teams')
+
+    script, div = components(plot2)
+    script2, div2 = components(plot)
+    script3, div3 = components(plot3)
+    script4, div4 = components(plot4)
+
+    plot = figure()
+    # plot.circle([1,2], [3,4])
+    # script2, div2 = components(plot)
+    return render_template("index3.html", the_div3=div3, the_script3=script3)
+
+@app.route("/presentation/4/")
+def graph4():
+    plot = create_histogram(df['Age_at_win'].dropna())
+    q = bydate(dfbig,'Prize_USD','date')
+    plot2 = create_bigbar(q, 'date','Prize_USD','Earnings By Year')
+
+    p = nlargest(dfbig, 'CountryName','Prize_USD',10)
+    plot3 = create_donut(p, 'CountryName','Prize_USD',
+                            'Earnings by Top 10 Countries')
+
+    r = nlargest(df2, 'teams','Prize_USD',5)
+    plot4 = create_bar_chart(r, 'teams','Prize_USD',
+                            'Earnings by Top 5 Teams')
+
+    script, div = components(plot2)
+    script2, div2 = components(plot)
+    script3, div3 = components(plot3)
+    script4, div4 = components(plot4)
+
+    plot = figure()
+    # plot.circle([1,2], [3,4])
+    # script2, div2 = components(plot)
+    return render_template("index4.html", the_div4=div4, the_script4=script4)
+
 def nlargest(df, col1, col2, n):
     x = df.groupby(df[col1])[col2].apply(lambda i: i.sum())
     tn = x.nlargest(n)
@@ -63,25 +177,30 @@ def bydate(df, col, date):
     return df2
 
 def create_bar_chart(df,col1, col2, title):
-    plot = Bar(df, col1, values=col2, title=title, color=Spectral11,
+    TOOLS = [HoverTool(tooltips=[(str(col1),'$x'),(str(col2),'@y{1.11}')])]
+    plot = Bar(df, col1, values=col2, title=title, tools=TOOLS,
+                color=Spectral11[1], ylabel="Total Earnings (in USD)",
                 legend=False, plot_width=300, plot_height=300)
     return plot
 
 def create_bigbar(df,col1, col2, title):
-    plot = Bar(df, label=col1, values=col2, color=Spectral11,
+    TOOLS = [HoverTool(tooltips=[(str(col1),'$x'),(str(col2),'@y{1.11}')])]
+    plot = Bar(df, label=col1, values=col2, tools=TOOLS,
+                color=Spectral11[2], ylabel="Total Earnings (in USD)",
                  legend=False, title=title, sizing_mode='stretch_both')
     return plot
 
 def create_donut(df,col1, col2, title):
     plot = Donut(df, label=col1, values=col2, color=Spectral11,
-                 title=title, sizing_mode='stretch_both')
+                 title=title, plot_width=400, plot_height=400)
     return plot
 
 
 def create_histogram(data):
-    TOOLS = [HoverTool(tooltips=[('Age:','@x'),('total','@y')])]
+    TOOLS = [HoverTool(tooltips=[('Age:','$x{int}'),('total','@y')])]
     plot = Histogram(data, title='Age:', legend='bottom_right',
-                    plot_width=300, plot_height=270)
+                    ylabel="Number of Tournaments",
+                    tools=TOOLS, plot_width=300, plot_height=300)
     return plot
 
 
