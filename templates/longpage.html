@@ -56,6 +56,9 @@
           <a class="js-scroll-trigger" href="#about4">Revenue By Team</a>
         </li>
         <li>
+          <a class="js-scroll-trigger" href="#tests">Prediction Results</a>
+        </li>
+        <li>
           <a class="js-scroll-trigger" href="#contact" onclick=$( "#menu-close").click();>Contact</a>
         </li>
       </ul>
@@ -70,9 +73,15 @@
       </div>
     </header>
 
+    <!-- Call to Action -->
+        <aside class="call-to-action bg-primary text-white">
+          <div class="container text-center">
+            <h3>Starcraft II Analysis</h3>
+          </div>
+        </aside>
+
     <!-- About -->
     <section id="about" class="about">
-        <h2 align="center">Starcraft II Analysis:</h2>
       <div class="container text-center">
           <div class="row" align="center">
               {{ the_div|safe }}
@@ -109,8 +118,65 @@
           </div>
       </div>
       <!-- /.container -->
+  </section>
+
+  <!-- Call to Action -->
+      <aside class="call-to-action bg-primary text-white">
+        <div class="container text-center">
+          <h3>Machine Learning Results</h3>
+        </div>
+      </aside>
+
+      <!-- About4 -->
+      <section id="tests" class="about">
+        <div class="container text-center">
+            <div class="row" align="center">
+                <table align="center">
+                  <tr>
+                    <th>Model</th>
+                    <th>Predicted Accuracy</th>
+                    <th>Test Accuracy</th>
+                  </tr>
+                  <tr>
+                    <td>Logistic Regression</td>
+                    <td>65.14%</td>
+                    <td>65.81%</td>
+                  </tr>
+                  <tr>
+                    <td>Gradient Boost</td>
+                    <td>65.03%</td>
+                    <td>67.12%</td>
+                  </tr>
+                  <tr>
+                    <td>Random Forest</td>
+                    <td>66.01%</td>
+                    <td>67.60%</td>
+                  </tr>
+                </table>
+            </div>
+        </div>
+        <!-- /.container -->
     </section>
 
+    <!-- About4 -->
+    <section id="features" class="about">
+      <div class="container text-center">
+          <div class="row" align="center">
+              {{ the_div5|safe }}
+          </div>
+      </div>
+      <!-- /.container -->
+  </section>
+
+    <section id="roc" class="about">
+      <div class="container text-center">
+          <div class="row" align="center">
+              <div class="row" align="center">
+              <img src="/static/ROC_Curve.png" align="center" style="width:400px;height:400px;">
+          </div>
+      </div>
+      </div>
+  </section>
     <!-- Services -->
     <!--section id="services" class="services bg-primary text-white">
       <div class="container">
@@ -253,6 +319,12 @@
         <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
       </small>
     </section>
+    <!-- Call to Action -->
+        <aside class="call-to-action bg-primary text-white">
+          <div class="container text-center">
+            <h3>Contact Me</h3>
+          </div>
+        </aside>
 
     <!-- Footer -->
     <footer>
@@ -298,6 +370,7 @@
     {{ the_script2|safe }}
     {{ the_script3|safe }}
     {{ the_script4|safe }}
+    {{ the_script5|safe }}
   </body>
 
 </html>

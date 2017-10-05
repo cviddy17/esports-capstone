@@ -35,6 +35,8 @@ df.date = pd.to_datetime(df.date, )
 dfbig = pd.read_json('messy_with_countries.json')
 dfbig.date = pd.to_datetime(dfbig.date)
 
+dffi = pd.read_json('dffi.json')
+
 mask = dfbig['teams'].isin(['Other', 'Unaffiliated'])
 df2 = dfbig[~mask]
 # @app.route("/")
@@ -82,11 +84,14 @@ def graph1():
     r = nlargest(df2, 'teams','Prize_USD',5)
     plot4 = create_bar_chart2(r, 'teams','Prize_USD',
                             'Earnings by Top 5 Teams')
+    plot5 = create_bar_chart3(dffi,'Feature','Importance',
+                            'Feature Importance - Random Forests')
 
     script, div = components(plot2)
     script2, div2 = components(plot)
     script3, div3 = components(plot3)
     script4, div4 = components(plot4)
+    script5, div5 = components(plot5)
 
     plot = figure()
     # plot.circle([1,2], [3,4])
@@ -94,7 +99,8 @@ def graph1():
     return render_template("longpage.html", the_div=div, the_script=script,
                             the_div2=div2, the_script2=script2,
                             the_div3=div3, the_script3=script3,
-                            the_div4=div4, the_script4=script4)
+                            the_div4=div4, the_script4=script4,
+                            the_div5=div5, the_script5=script5)
 
 
 
@@ -121,6 +127,13 @@ def create_bar_chart2(df,col1, col2, title):
     plot = Bar(df, col1, values=col2, title=title, tools=TOOLS,
                 color=Spectral11[1], ylabel="Total Earnings (in USD)",
                 legend=False, plot_width=400, plot_height=400)
+    return plot
+
+def create_bar_chart3(df,col1, col2, title):
+    TOOLS = [HoverTool(tooltips=[(str(col1),'$x'),(str(col2),'@y{1.1111}')])]
+    plot = Bar(df, col1, values=col2,
+               legend=False, title=title, tools=TOOLS,
+               color=Spectral11[2], plot_width=400, plot_height=400)
     return plot
 
 def create_bigbar(df,col1, col2, title):
