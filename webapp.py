@@ -71,16 +71,16 @@ def graphme():
 
 @app.route("/presentation/")
 def graph1():
-    plot = create_histogram(df['Age_at_win'].dropna())
+    plot = create_histogram2(df['Age_at_win'].dropna())
     q = bydate(dfbig,'Prize_USD','date')
-    plot2 = create_bar_chart(q, 'date','Prize_USD','Earnings By Year')
+    plot2 = create_bar_chart2(q, 'date','Prize_USD','Earnings By Year')
 
     p = nlargest(dfbig, 'CountryName','Prize_USD',10)
-    plot3 = create_donut(p, 'CountryName','Prize_USD',
+    plot3 = create_donut2(p, 'CountryName','Prize_USD',
                             'Earnings by Top 10 Countries')
 
     r = nlargest(df2, 'teams','Prize_USD',5)
-    plot4 = create_bar_chart(r, 'teams','Prize_USD',
+    plot4 = create_bar_chart2(r, 'teams','Prize_USD',
                             'Earnings by Top 5 Teams')
 
     script, div = components(plot2)
@@ -116,6 +116,13 @@ def create_bar_chart(df,col1, col2, title):
                 legend=False, plot_width=300, plot_height=300)
     return plot
 
+def create_bar_chart2(df,col1, col2, title):
+    TOOLS = [HoverTool(tooltips=[(str(col1),'$x'),(str(col2),'@y{1.11}')])]
+    plot = Bar(df, col1, values=col2, title=title, tools=TOOLS,
+                color=Spectral11[1], ylabel="Total Earnings (in USD)",
+                legend=False)
+    return plot
+
 def create_bigbar(df,col1, col2, title):
     TOOLS = [HoverTool(tooltips=[(str(col1),'$x'),(str(col2),'@y{1.11}')])]
     plot = Bar(df, label=col1, values=col2, tools=TOOLS,
@@ -128,12 +135,23 @@ def create_donut(df,col1, col2, title):
                  title=title, plot_width=300, plot_height=300)
     return plot
 
+def create_donut2(df,col1, col2, title):
+    plot = Donut(df, label=col1, values=col2, color=Spectral11,
+                 title=title)
+    return plot
 
 def create_histogram(data):
     TOOLS = [HoverTool(tooltips=[('Age:','$x{int}'),('total','@y')])]
     plot = Histogram(data, title='Age:', legend='bottom_right',
                     ylabel="Number of Tournaments",
                     tools=TOOLS, plot_width=300, plot_height=300)
+    return plot
+
+def create_histogram2(data):
+    TOOLS = [HoverTool(tooltips=[('Age:','$x{int}'),('total','@y')])]
+    plot = Histogram(data, title='Age:', legend='bottom_right',
+                    ylabel="Number of Tournaments",
+                    tools=TOOLS)
     return plot
 
 
