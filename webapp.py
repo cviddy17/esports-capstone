@@ -43,35 +43,35 @@ df2 = dfbig[~mask]
 # def index():
 #     return render_template('index.html')
 
+#
+# @app.route("/dashboard/")
+# def graphme():
+#     plot = create_histogram(df['Age_at_win'].dropna())
+#     q = bydate(dfbig,'Prize_USD','date')
+#     plot2 = create_bigbar(q, 'date','Prize_USD','Earnings By Year')
+#
+#     p = nlargest(dfbig, 'CountryName','Prize_USD',10)
+#     plot3 = create_donut(p, 'CountryName','Prize_USD',
+#                             'Earnings by Top 10 Countries')
+#
+#     r = nlargest(df2, 'teams','Prize_USD',5)
+#     plot4 = create_bar_chart(r, 'teams','Prize_USD',
+#                             'Earnings by Top 5 Teams')
+#
+#     script, div = components(plot2)
+#     script2, div2 = components(plot)
+#     script3, div3 = components(plot3)
+#     script4, div4 = components(plot4)
+#
+#     plot = figure()
+#     # plot.circle([1,2], [3,4])
+#     # script2, div2 = components(plot)
+#     return render_template("index.html", the_div=div, the_script=script,
+#                             the_div2=div2, the_script2=script2,
+#                             the_div3=div3, the_script3=script3,
+#                             the_div4=div4, the_script4=script4)
 
-@app.route("/dashboard/")
-def graphme():
-    plot = create_histogram(df['Age_at_win'].dropna())
-    q = bydate(dfbig,'Prize_USD','date')
-    plot2 = create_bigbar(q, 'date','Prize_USD','Earnings By Year')
-
-    p = nlargest(dfbig, 'CountryName','Prize_USD',10)
-    plot3 = create_donut(p, 'CountryName','Prize_USD',
-                            'Earnings by Top 10 Countries')
-
-    r = nlargest(df2, 'teams','Prize_USD',5)
-    plot4 = create_bar_chart(r, 'teams','Prize_USD',
-                            'Earnings by Top 5 Teams')
-
-    script, div = components(plot2)
-    script2, div2 = components(plot)
-    script3, div3 = components(plot3)
-    script4, div4 = components(plot4)
-
-    plot = figure()
-    # plot.circle([1,2], [3,4])
-    # script2, div2 = components(plot)
-    return render_template("index.html", the_div=div, the_script=script,
-                            the_div2=div2, the_script2=script2,
-                            the_div3=div3, the_script3=script3,
-                            the_div4=div4, the_script4=script4)
-
-@app.route("/presentation/")
+@app.route("/")
 def graph1():
     plot = create_histogram2(df['Age_at_win'].dropna())
     q = bydate(dfbig,'Prize_USD','date')
