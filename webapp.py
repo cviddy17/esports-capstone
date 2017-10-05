@@ -73,7 +73,7 @@ def graphme():
 def graph1():
     plot = create_histogram(df['Age_at_win'].dropna())
     q = bydate(dfbig,'Prize_USD','date')
-    plot2 = create_bigbar(q, 'date','Prize_USD','Earnings By Year')
+    plot2 = create_bar_chart(q, 'date','Prize_USD','Earnings By Year')
 
     p = nlargest(dfbig, 'CountryName','Prize_USD',10)
     plot3 = create_donut(p, 'CountryName','Prize_USD',
@@ -91,7 +91,10 @@ def graph1():
     plot = figure()
     # plot.circle([1,2], [3,4])
     # script2, div2 = components(plot)
-    return render_template("longpage.html", the_div=div, the_script=script)
+    return render_template("longpage.html", the_div=div, the_script=script,
+                            the_div2=div2, the_script2=script2,
+                            the_div3=div3, the_script3=script3,
+                            the_div4=div4, the_script4=script4)
 
 
 

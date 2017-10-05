@@ -44,7 +44,16 @@
           <a class="js-scroll-trigger" href="#top">Home</a>
         </li>
         <li>
-          <a class="js-scroll-trigger" href="#about">About</a>
+          <a class="js-scroll-trigger" href="#about">Revenue By Year</a>
+        </li>
+        <li>
+          <a class="js-scroll-trigger" href="#about2">Ages of Players</a>
+        </li>
+        <li>
+          <a class="js-scroll-trigger" href="#about3">Revenue By Country</a>
+        </li>
+        <li>
+          <a class="js-scroll-trigger" href="#about4">Revenue By Team</a>
         </li>
         <li>
           <a class="js-scroll-trigger" href="#services">Services</a>
@@ -60,7 +69,7 @@
 
     <!-- Header -->
     <header class="header" id="top">
-      <div class="text-vertical-center">
+        <div class="text-vertical-center">
         <h1>Start Bootstrap</h1>
         <h3>Free Bootstrap Themes &amp; Templates</h3>
         <br>
@@ -71,9 +80,39 @@
     <!-- About -->
     <section id="about" class="about">
       <div class="container text-center">
-        <h2>Stylish Portfolio is the perfect theme for your next project!</h2>
-        <p class="lead">This theme features some wonderful photography courtesy of
-          <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a>.</p>
+          <div class="row">
+              {{ the_div|safe }}
+          </div>
+      </div>
+      <!-- /.container -->
+    </section>
+
+    <!-- About2 -->
+    <section id="about2" class="about">
+      <div class="container text-center">
+          <div class="row">
+              {{ the_div2|safe }}
+          </div>
+      </div>
+      <!-- /.container -->
+    </section>
+
+    <!-- About3 -->
+    <section id="about3" class="about">
+      <div class="container text-center">
+        <div class="row">
+            {{ the_div3|safe }}
+        </div>
+      </div>
+      <!-- /.container -->
+    </section>
+
+    <!-- About4 -->
+    <section id="about4" class="about">
+      <div class="container text-center">
+          <div class="row">
+              {{ the_div4|safe }}
+          </div>
       </div>
       <!-- /.container -->
     </section>
@@ -159,7 +198,6 @@
     <section id="portfolio" class="portfolio">
       <div class="container">
         <div class="row">
-        {{ the_div|safe }}
           <div class="col-lg-10 mx-auto text-center">
             <h2>Our Work</h2>
             <hr class="small">
@@ -282,6 +320,9 @@
     <script src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.5.min.js"></script>
     <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.5.min.js"></script>
     {{ the_script|safe }}
+    {{ the_script2|safe }}
+    {{ the_script3|safe }}
+    {{ the_script4|safe }}
   </body>
 
 </html>

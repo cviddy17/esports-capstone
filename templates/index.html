@@ -85,7 +85,7 @@
 
       <!-- Related Projects Row -->
 
-      <div class="row">
+      <!--div class="row">
 
         <div class="col-md-4">
           {{ the_div2|safe }}
@@ -99,19 +99,33 @@
           {{ the_div4|safe }}
         </div>
 
-      </div>
+    </div-->
       <!-- /.row -->
 
     </div>
     <!-- /.container -->
+    <div class="row">
 
+            <div class="col-md-4 col-sm-6 mb-4">
+               {{ the_div2|safe }}
+            </div>
+
+            <div class="col-md-4 col-sm-6 mb-4">
+              {{ the_div3|safe }}
+            </div>
+
+            <div class="col-md-4 col-sm-6 mb-4">
+              {{ the_div4|safe }}
+            </div>
+
+          </div>
     <!-- Footer -->
-    <!--footer class="py-5 bg-dark">
+    <footer class="py-5 bg-dark">
       <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Chad Valencia 2017</p>
       </div>
       <!-- /.container -->
-  <!--/footer>
+  </footer>
 
     <!-- Bootstrap core JavaScript -->
     <script src="/static/vendor/jquery/jquery.min.js"></script>
