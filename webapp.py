@@ -120,7 +120,7 @@ def create_bar_chart2(df,col1, col2, title):
     TOOLS = [HoverTool(tooltips=[(str(col1),'$x'),(str(col2),'@y{1.11}')])]
     plot = Bar(df, col1, values=col2, title=title, tools=TOOLS,
                 color=Spectral11[1], ylabel="Total Earnings (in USD)",
-                legend=False)
+                legend=False, plot_width=400, plot_height=400)
     return plot
 
 def create_bigbar(df,col1, col2, title):
@@ -137,7 +137,7 @@ def create_donut(df,col1, col2, title):
 
 def create_donut2(df,col1, col2, title):
     plot = Donut(df, label=col1, values=col2, color=Spectral11,
-                 title=title)
+                 title=title, plot_width=400, plot_height=400)
     return plot
 
 def create_histogram(data):
@@ -151,7 +151,7 @@ def create_histogram2(data):
     TOOLS = [HoverTool(tooltips=[('Age:','$x{int}'),('total','@y')])]
     plot = Histogram(data, title='Age:', legend='bottom_right',
                     ylabel="Number of Tournaments",
-                    tools=TOOLS)
+                    tools=TOOLS, plot_width=400, plot_height=400)
     return plot
 
 
