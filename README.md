@@ -1,6 +1,7 @@
 #README
 
 Version History:
+.9.2017.10.19 Cleaning/Overhaul
 .9.2017.10.5 Added webapp functionality
 
 ###Scope and problem:
