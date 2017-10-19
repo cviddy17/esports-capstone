@@ -29,13 +29,13 @@ bokehtheme = Theme(json={
     }
 }})
 
-df = pd.read_csv('testapp.csv')
+df = pd.read_csv('data/testapp.csv')
 df.date = pd.to_datetime(df.date, )
 
-dfbig = pd.read_json('messy_with_countries.json')
+dfbig = pd.read_json('data/messy_with_countries.json')
 dfbig.date = pd.to_datetime(dfbig.date)
 
-dffi = pd.read_json('dffi.json')
+dffi = pd.read_json('data/dffi.json')
 
 mask = dfbig['teams'].isin(['Other', 'Unaffiliated'])
 df2 = dfbig[~mask]
